@@ -13,5 +13,6 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("ghghd");
         System.out.println( "finish");
         System.out.println("oneeeeeeeeeeeeeeeee");
+        int j = 4;
     }
 }
