@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
         int j = 4;
         int k=j-3;
         int i = k - 1;
+        System.out.println("im the king");
         System.out.println( "Nadav the kings");
     }
 }
