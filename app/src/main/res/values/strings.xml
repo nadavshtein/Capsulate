@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">capsulate</string>
-    <string name="name">Name</string>
+    <string name="user_name">User Name</string>
     <string name="password">password</string>
 </resources>

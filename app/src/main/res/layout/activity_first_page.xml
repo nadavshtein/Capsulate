@@ -23,6 +23,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <com.ornach.nobobutton.NoboButton
+        android:id="@+id/managerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -31,13 +32,13 @@
         android:paddingTop="15dp"
         android:paddingRight="40dp"
         android:paddingBottom="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.489"
 
-        app:layout_constraintVertical_bias="0.042"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4"
         app:nb_backgroundColor="#FFF"
         app:nb_focusColor="#304CFF"
         app:nb_radius="30dp"
@@ -47,6 +48,7 @@
         app:nb_textStyle="bold" />
 
     <com.ornach.nobobutton.NoboButton
+        android:id="@+id/workerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -57,9 +59,10 @@
         android:paddingBottom="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.525"
         app:nb_backgroundColor="#FFF"
         app:nb_focusColor="#304CFF"
         app:nb_radius="30dp"
