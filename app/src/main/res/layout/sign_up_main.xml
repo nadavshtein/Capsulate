@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/blue_shades_background"
-    tools:context=".login.FirstPage">
+    tools:context=".SignUp.SignUpMain">
 
 
     <ImageView
@@ -42,7 +42,7 @@
         app:nb_backgroundColor="#FFF"
         app:nb_focusColor="#304CFF"
         app:nb_radius="30dp"
-        app:nb_text="Manager Login"
+        app:nb_text="I'm a Manager"
         app:nb_textColor="#7587FF"
         app:nb_textSize="20dp"
         app:nb_textStyle="bold" />
@@ -66,7 +66,7 @@
         app:nb_backgroundColor="#FFF"
         app:nb_focusColor="#304CFF"
         app:nb_radius="30dp"
-        app:nb_text="Worker Login"
+        app:nb_text="I'm a Worker"
         app:nb_textColor="#7587FF"
         app:nb_textSize="20dp"
         app:nb_textStyle="bold" />

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "234345364659",
+    "firebase_url": "https://capsule-f963b.firebaseio.com",
+    "project_id": "capsule-f963b",
+    "storage_bucket": "capsule-f963b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:234345364659:android:f46ac8fddc0869ac4344c6",
+        "android_client_info": {
+          "package_name": "com.example.capsulate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "234345364659-6nkll9ab387vfc7p2hdespng47bnrgut.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQ-GF8_hNWhIDVkPETdX98CwTzL1ydEHk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "234345364659-6nkll9ab387vfc7p2hdespng47bnrgut.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

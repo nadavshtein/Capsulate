@@ -1,4 +1,4 @@
-package com.example.capsulate.login;
+package com.example.capsulate.SignUp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.example.capsulate.R;
 
-public class WorkerLogin extends AppCompatActivity {
+public class ManagerSignUp extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_worker_login);
+        setContentView(R.layout.activity_manager_sign_up);
     }
 }
