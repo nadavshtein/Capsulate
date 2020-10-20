@@ -26,7 +26,7 @@ public class LoginFirstPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_first_page);
-
+        System.out.println("check");
 //        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 //        // Create a new user with a first and last name
