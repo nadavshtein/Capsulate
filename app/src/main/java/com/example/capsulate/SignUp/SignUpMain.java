@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.capsulate.R;
-import com.example.capsulate.login.LoginClickListener;
-import com.example.capsulate.login.LoginFirstPage;
+import com.example.capsulate.SignUp.Manager.ManagerSignUp;
+import com.example.capsulate.SignUp.Worker.WorkerSignUp;
 import com.ornach.nobobutton.NoboButton;
 
 public class SignUpMain extends AppCompatActivity {
@@ -27,7 +27,7 @@ public class SignUpMain extends AppCompatActivity {
         workerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(v.getContext(),WorkerSignUp.class));
+                startActivity(new Intent(v.getContext(), WorkerSignUp.class));
             }
         });
     }
@@ -36,7 +36,7 @@ public class SignUpMain extends AppCompatActivity {
         managerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(v.getContext(),ManagerSignUp.class));
+                startActivity(new Intent(v.getContext(), ManagerSignUp.class));
             }
         });
     }
