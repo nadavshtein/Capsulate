@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainPageWorker"></activity>
+        <activity android:name=".MainPageWorker" />
         <activity android:name=".MainPageManager" />
         <activity android:name=".SignUp.Worker.WorkerSignUp" />
         <activity android:name=".SignUp.Manager.ManagerSignUp" />

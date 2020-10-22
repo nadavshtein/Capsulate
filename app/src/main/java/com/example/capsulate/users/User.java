@@ -1,18 +1,18 @@
 package com.example.capsulate.users;
 
+import com.example.capsulate.Capsule;
 import com.example.capsulate.CoronaStatus;
-import com.example.capsulate.Corporation;
 
 public abstract class User {
 
-//    public static String fullNameConstant="FULL_NAME";
-//    public static String userNameConstant="USER_NAME";
-//    public static String passwordConstant="PASSWORD";
+    public static String userIdConst="USER_ID";
     protected String fullName;
     protected String userName;
     protected String password;
     protected boolean isManager;
-    protected Corporation corporation;
+    protected String corpId;
+    protected String capsuleId;
+    protected Capsule previousCapsuleId;
     protected CoronaStatus status;
 
     public User(String fullName, String userName, String password) {
@@ -20,6 +20,10 @@ public abstract class User {
         this.userName = userName;
         this.password = password;
         this.status=CoronaStatus.Healthy; // default
+    }
+
+    public void setCorpId(String corpId) {
+        this.corpId = corpId;
     }
 
     public void setStatus(CoronaStatus status) {
@@ -30,8 +34,16 @@ public abstract class User {
         return isManager;
     }
 
-    public Corporation getCorporation() {
-        return corporation;
+    public String getCorpId() {
+        return corpId;
+    }
+
+    public String getCapsuleId() {
+        return capsuleId;
+    }
+
+    public Capsule getPreviousCapsuleId() {
+        return previousCapsuleId;
     }
 
     public CoronaStatus getStatus() {

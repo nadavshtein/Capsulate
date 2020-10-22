@@ -19,8 +19,11 @@ public class ManagerSignUp extends AppCompatActivity {
         EditText userNameEditText=findViewById(R.id.user_name_manager);
         EditText passwordEditText=findViewById(R.id.password_manager);
         EditText confirmEditText=findViewById(R.id.confirm_password_manager);
-        signUp.setOnClickListener(new SignUpButtonListener(fullNameEditText,userNameEditText,
-                passwordEditText,confirmEditText));
+        EditText corpIdEditText=findViewById(R.id.corp_id);
+        EditText corpNameEditText=findViewById(R.id.corp_name);
+
+        signUp.setOnClickListener(new SignUpManagerListener(fullNameEditText,userNameEditText,
+                passwordEditText,confirmEditText,corpIdEditText,corpNameEditText));
     }
 
 

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.capsulate.R;
@@ -27,34 +28,13 @@ public class LoginFirstPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_first_page);
 
-//        FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-//        // Create a new user with a first and last name
-//        Map<String, Object> user = new HashMap<>();
-//        user.put("first", "Ada");
-//        user.put("last", "Lovelace");
-//        user.put("born", 1815);
-//
-//// Add a new document with a generated ID
-//        db.collection("users")
-//                .add(user)
-//                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-//                    @Override
-//                    public void onSuccess(DocumentReference documentReference) {
-//                       // Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-//                    }
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                       // Log.w(TAG, "Error adding document", e);
-//                    }
-//                });
-
         TextView signUpTextView=findViewById(R.id.sign_up);
         setSignUpListener(signUpTextView);
+
+        EditText userName =findViewById(R.id.input_name);
+        EditText password =findViewById(R.id.input_password);
         NoboButton loginButton=findViewById(R.id.login);
-       // loginButton.setOnClickListener();
+        loginButton.setOnClickListener(new LoginClickListener(userName,password));
     }
 
 
