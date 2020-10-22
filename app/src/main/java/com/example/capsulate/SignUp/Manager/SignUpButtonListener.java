@@ -1,12 +1,16 @@
 package com.example.capsulate.SignUp.Manager;
 
+import android.content.Intent;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.example.capsulate.MainPageManager;
 import com.example.capsulate.users.Manager;
+import com.example.capsulate.users.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -46,14 +50,13 @@ public class SignUpButtonListener implements View.OnClickListener {
         String password = passwordEditText.getText().toString();
         String confirm = confirmEditText.getText().toString();
         if (checkFullName(fullName, v) && checkPassword(password,confirm)) {
-            Manager manager = new Manager(fullName, userName, password);
-            insertManager(manager,v);
+            insertManager(fullName,userName,password,v);
         }
     }
 
 
-    private void insertManager(final Manager manager, final View v) {
-        dataBase.collection("Users").whereEqualTo("userName", manager.getUserName()).get()
+    private void insertManager(final String fullName, final String userName, final String password, final View v) {
+        dataBase.collection("Users").whereEqualTo("userName", userName).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -62,16 +65,16 @@ public class SignUpButtonListener implements View.OnClickListener {
                             Toast.makeText(v.getContext(), "user name already exists", Toast.LENGTH_SHORT).show();
                         }
                         else {
-                            insertManager(manager);
+                            insertManager();
+                            Intent intent=new Intent(v.getContext(), MainPageManager.class);
+                            intent.putExtra("USER_NAME",userName);
+                            v.getContext().startActivity(intent);
                         }
                     }
 
-                    private void insertManager(Manager manager) {
-                        Map<String, Object> newManager = new HashMap<>();
-                        newManager.put("fullName", manager.getFullName());
-                        newManager.put("userName", manager.getUserName());
-                        newManager.put("password", manager.getPassword());
-                        usersCollection.document(manager.getUserName()).set(newManager);
+                    private void insertManager() {
+                        Manager manager=new Manager(fullName,userName,password);
+                        usersCollection.document(userName).set(manager);
                     }
                 });
     }
