@@ -1,16 +1,14 @@
-package com.example.capsulate.SignUp;
+package com.example.capsulate;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.example.capsulate.R;
-
-public class ManagerSignUp extends AppCompatActivity {
+public class MainPageWorker extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manager_sign_up);
+        setContentView(R.layout.activity_main_page_worker);
     }
 }
