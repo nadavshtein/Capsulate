@@ -1,9 +1,10 @@
 package com.example.capsulate.users;
 
+import com.example.capsulate.UserRole;
+
 public class Manager extends User {
 
-    public Manager(String fullName, String userName, String password) {
-        super(fullName, userName, password);
-        isManager=true;
+    public Manager(String fullName, String userName, String password, UserRole role) {
+        super(fullName, userName, password,role);
     }
 }

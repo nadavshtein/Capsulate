@@ -1,14 +1,17 @@
 package com.example.capsulate.login;
 
 import android.content.Intent;
+import android.os.Build;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.core.util.Consumer;
 
 import com.example.capsulate.Corporation;
-import com.example.capsulate.MainActivity;
+import com.example.capsulate.DAO.UserDao;
 import com.example.capsulate.MainPageManager;
 import com.example.capsulate.MainPageWorker;
 import com.example.capsulate.users.User;
@@ -17,6 +20,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.Optional;
 
 public class LoginClickListener implements View.OnClickListener {
 
@@ -30,6 +35,7 @@ public class LoginClickListener implements View.OnClickListener {
         this.passwordEditText=password;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onClick(View v) {
 
@@ -39,32 +45,42 @@ public class LoginClickListener implements View.OnClickListener {
 
     }
 
-    private void checkAuthentication(String userName, String password, final View v) {
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void checkAuthentication(final String userName, final String password, final View v) {
 
-        dataBase.collection("Users").whereEqualTo("userName", userName)
-                .whereEqualTo("password",password).get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        QuerySnapshot document=task.getResult();
-                        if(document.isEmpty()){
-                            Toast.makeText(v.getContext(), "Please try again", Toast.LENGTH_SHORT).show();
-                        }else {
+        UserDao userDao=new UserDao();
+        Consumer<Optional<User>> userConsumer = new Consumer<Optional<User>>() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void accept(Optional<User> userOpt) {
+                if (userOpt.isPresent()) {
+                    User user=userOpt.get();
+                    if (user.getPassword()!=password){
+                        Toast.makeText(v.getContext(), "wrong password", Toast.LENGTH_SHORT).show();
+                    }
+                    else { // correct!!!
 
-                            Intent intent;
-                            User user=document.toObjects(User.class).get(0); // problem!!!!!!!!!!!!!!!!!!!!
-                            if(user.isManager()){
-                                intent=new Intent(v.getContext(), MainPageManager.class);
-                            }
-                            else {
-                                intent=new Intent(v.getContext(), MainPageWorker.class);
-                            }
-                            intent.putExtra(User.userIdConst,user.getUserName());
-                            intent.putExtra(Corporation.corpIdConst,user.getCorpId());
-                            v.getContext().startActivity(intent);
+                        Intent intent;
+                        switch (user.getRole()){
+                            case Worker:
+                                intent=new Intent(v.getContext(),MainPageWorker.class);
+                                intent.putExtra(User.userIdConst,userName);
+                                v.getContext().startActivity(intent);
+                                break;
+                            case Manager:
+                                intent=new Intent(v.getContext(),MainPageManager.class);
+                                intent.putExtra(User.userIdConst,userName);
+                                v.getContext().startActivity(intent);
+                                break;
+
                         }
                     }
 
-                });
+                } else { // no such user
+                    Toast.makeText(v.getContext(), "user name doesn't exist", Toast.LENGTH_SHORT).show();
+                }
+            }
+        };
+        userDao.get(userName, userConsumer);
     }
 }

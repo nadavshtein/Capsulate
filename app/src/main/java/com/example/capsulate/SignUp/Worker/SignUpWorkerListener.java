@@ -1,22 +1,27 @@
 package com.example.capsulate.SignUp.Worker;
 
 import android.content.Intent;
+import android.os.Build;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.core.util.Consumer;
 
 import com.example.capsulate.Corporation;
+import com.example.capsulate.DAO.CorporationDao;
+import com.example.capsulate.DAO.UserDao;
+import com.example.capsulate.DAO.WorkerDao;
 import com.example.capsulate.MainPageWorker;
 import com.example.capsulate.SignUp.FieldsChecker;
+import com.example.capsulate.UserRole;
 import com.example.capsulate.users.User;
 import com.example.capsulate.users.Worker;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.Optional;
 
 public class SignUpWorkerListener implements View.OnClickListener {
 
@@ -39,6 +44,7 @@ public class SignUpWorkerListener implements View.OnClickListener {
         this.corpIdEditText = corpIdEditText;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onClick(View v) {
         String fullName = fullNameEditText.getText().toString();
@@ -51,50 +57,55 @@ public class SignUpWorkerListener implements View.OnClickListener {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void insertWorker(final String fullName, final String userName, final String password,
                               final String corpId, final View v) {
 
-        dataBase.collection("Users").whereEqualTo("userName", userName).get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        final Worker worker = new Worker(fullName, userName, password, UserRole.Worker);
+        final UserDao userDao = new UserDao();
+        final WorkerDao workerDao = new WorkerDao();
+        final CorporationDao corporationDao = new CorporationDao();
+        Consumer<Optional<User>> userConsumer = new Consumer<Optional<User>>() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void accept(Optional<User> user) {
+                if (user.isPresent()) {
+                    Toast.makeText(v.getContext(), "user name already exists", Toast.LENGTH_SHORT).show();
+                } else {
+                    worker.setCorpId(corpId);
+                    workerDao.save(worker);
+                    findCorporation(corpId);
+
+                }
+            }
+
+            private void findCorporation(String corpId) {
+                Consumer<Optional<Corporation>> corporationConsumer = new Consumer<Optional<Corporation>>() {
+
                     @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        QuerySnapshot document = task.getResult();
-                        if (!document.isEmpty()) {
-                            Toast.makeText(v.getContext(), "user name already exists", Toast.LENGTH_SHORT).show();
+                    public void accept(Optional<Corporation> corporationOpt) {
+                        if (corporationOpt.isPresent()) {
+                            Corporation corporation = corporationOpt.get();
+                            corporation.addEmployee(worker.getUserName());
+                            corporationDao.save(corporation);
+                            Intent intent = new Intent(v.getContext(), MainPageWorker.class);
+                            intent.putExtra(User.userIdConst, worker.getUserName());
+                            intent.putExtra(Corporation.corpIdConst, corporation.getCorpId());
+                            v.getContext().startActivity(intent);
+
                         } else {
-                            checkCorpId();
+                            userDao.delete(worker);
+                            Toast.makeText(v.getContext(), "incorrect corporation code", Toast.LENGTH_SHORT).show();
                         }
                     }
+                };
+                corporationDao.get(corpId, corporationConsumer);
+            }
+        };
 
-                    private void checkCorpId() {
-                        dataBase.collection("Corps").whereEqualTo("corpId", corpId).get()
-                                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                        QuerySnapshot document = task.getResult();
-                                        if (document.isEmpty()) {
-                                            Toast.makeText(v.getContext(), "No such corporation Id", Toast.LENGTH_SHORT).show();
-                                        } else {
-                                            Corporation corporation = document.toObjects(Corporation.class).get(0);
-                                            insertToDataBase(corporation);
-                                        }
-                                    }
-                                });
-                    }
+        userDao.get(worker.getUserName(),userConsumer);
 
-                    private void insertToDataBase(Corporation corporation) {
-
-                        User worker = new Worker(fullName, userName, password);
-                        corporation.addEmployee(userName);
-                        worker.setCorpId(corpId);
-                        usersCollection.document(userName).set(worker);
-                        corpsCollection.document(corpId).set(corporation);
-                        Intent intent = new Intent(v.getContext(), MainPageWorker.class);
-                        intent.putExtra(User.userIdConst,worker.getUserName());
-                        intent.putExtra(Corporation.corpIdConst,worker.getCorpId());
-                        v.getContext().startActivity(intent);
-                    }
-                });
     }
 }
+
 
