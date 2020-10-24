@@ -4,25 +4,25 @@
     <item
         android:id="@+id/home"
         android:title="Date"
-        android:icon="@drawable/ic_baseline_date_range_24"
+        android:icon="@drawable/ic_baseline_date_range_24"/>
         app:exb_color="#FF8888" />
 
     <item
         android:id="@+id/settings"
         android:title="Date"
-        android:icon="@drawable/ic_baseline_date_range_24"
+        android:icon="@drawable/ic_baseline_date_range_24"/>
         app:exb_color="#FF8888" />
 
     <item
         android:id="@+id/bookmarks"
         android:title="Date"
-        android:icon="@drawable/ic_baseline_date_range_24"
+        android:icon="@drawable/ic_baseline_date_range_24"/>
         app:exb_color="#FF8888" />
 
     <item
         android:id="@+id/masheu"
         android:title="Date"
-        android:icon="@drawable/ic_baseline_date_range_24"
+        android:icon="@drawable/ic_baseline_date_range_24"/>
         app:exb_color="#FF8888" />
 
 
