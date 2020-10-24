@@ -3,27 +3,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/home"
-        android:title="Date"
-        android:icon="@drawable/ic_baseline_date_range_24"/>
-        app:exb_color="#FF8888" />
+        android:title="Date1"
+        android:icon="@drawable/ic_baseline_date_range_24"
+        android:visible="true"
+        app:exb_color="#318DDD" />
 
     <item
         android:id="@+id/settings"
-        android:title="Date"
-        android:icon="@drawable/ic_baseline_date_range_24"/>
-        app:exb_color="#FF8888" />
+        android:title="Date2"
+        android:icon="@drawable/ic_baseline_date_range_24"
+        android:visible="true"
+        app:exb_color="#318DDD" />
 
     <item
         android:id="@+id/bookmarks"
-        android:title="Date"
-        android:icon="@drawable/ic_baseline_date_range_24"/>
-        app:exb_color="#FF8888" />
+        android:title="Add"
+        android:icon="@drawable/ic_baseline_add_24"
+        android:visible="true"
+        app:exb_color="#318DDD" />
 
     <item
         android:id="@+id/masheu"
-        android:title="Date"
-        android:icon="@drawable/ic_baseline_date_range_24"/>
-        app:exb_color="#FF8888" />
+        android:title="Date4"
+        android:icon="@drawable/ic_baseline_date_range_24"
+        android:visible="true"
+        app:exb_color="#318DDD" />
 
-
+    <item
+        android:id="@+id/smol"
+        android:title="Date5"
+        android:icon="@drawable/ic_baseline_date_range_24"
+        android:visible="true"
+        app:exb_color="#318DDD" />
 </menu>

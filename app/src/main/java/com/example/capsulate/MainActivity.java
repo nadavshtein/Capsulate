@@ -3,9 +3,13 @@ package com.example.capsulate;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import github.com.st235.lib_expandablebottombar.ExpandableBottomBar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,5 +17,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ExpandableBottomBar bottomBar= findViewById(R.id.expandable_bottom_bar);
+        setButtonBar(bottomBar);
     }
+
+    private void setButtonBar(ExpandableBottomBar bottomBar) {
+        bottomBar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+
 }
