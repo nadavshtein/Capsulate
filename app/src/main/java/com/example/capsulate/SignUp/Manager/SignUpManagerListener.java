@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.core.util.Consumer;
 
@@ -14,16 +13,12 @@ import com.example.capsulate.Corporation;
 import com.example.capsulate.DAO.CorporationDao;
 import com.example.capsulate.DAO.ManagerDao;
 import com.example.capsulate.DAO.UserDao;
-import com.example.capsulate.MainPageManager;
 import com.example.capsulate.SignUp.FieldsChecker;
 import com.example.capsulate.UserRole;
 import com.example.capsulate.users.Manager;
 import com.example.capsulate.users.User;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Optional;
 
@@ -90,7 +85,7 @@ public class SignUpManagerListener implements View.OnClickListener {
                     Corporation corporation=new Corporation(corpId,corpName);
                     corporation.addEmployee(manager.getUserName());
                     corporationDao.save(corporation);
-                    Intent intent=new Intent(v.getContext(),MainPageManager.class);
+                    Intent intent=new Intent(v.getContext(), MainPageManager2.class);
                     intent.putExtra(User.userIdConst,manager.getUserName());
                     intent.putExtra(Corporation.corpIdConst,manager.getCorpId());
                     v.getContext().startActivity(intent);

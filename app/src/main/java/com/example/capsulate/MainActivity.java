@@ -34,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
             public void onNavigationChanged(View view, int position) {
                 switch (position){
                     case 1:
-                        startActivity(new Intent(view.getContext(), LoginFirstPage.class));
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                                new MainPageManagerFragment());
                 }
             }
         });
