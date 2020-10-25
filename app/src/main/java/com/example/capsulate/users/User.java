@@ -5,7 +5,7 @@ import com.example.capsulate.UserRole;
 
 public class User {
 
-    public static String userIdConst="USER_ID";
+    public static String userIdConst = "USER_ID";
     protected String fullName;
     protected UserRole role;
     protected String userName;
@@ -15,12 +15,15 @@ public class User {
     protected String previousCapsuleId;
     protected CoronaStatus status;
 
+    public User() {
+    }
+
     public User(String fullName, String userName, String password, UserRole role) {
         this.fullName = fullName;
         this.userName = userName;
         this.password = password;
-        this.status=CoronaStatus.Healthy; // default
-        this.role=role;
+        this.status = CoronaStatus.Healthy; // default
+        this.role = role;
     }
 
     public void setCorpId(String corpId) {

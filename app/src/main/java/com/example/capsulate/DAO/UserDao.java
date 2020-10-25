@@ -28,6 +28,8 @@ public class UserDao implements Dao<User> {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         QuerySnapshot document = task.getResult();
                         if (!document.isEmpty()) {
+                            User user=document.toObjects(User.class).get(0);
+                            System.out.println("####################"+user.getFullName());
                             consumer.accept(Optional.of(document.toObjects(User.class).get(0)));
                         } else {
                             consumer.accept(Optional.<User>empty());

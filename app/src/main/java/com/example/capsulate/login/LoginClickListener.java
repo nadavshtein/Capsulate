@@ -55,7 +55,7 @@ public class LoginClickListener implements View.OnClickListener {
             public void accept(Optional<User> userOpt) {
                 if (userOpt.isPresent()) {
                     User user=userOpt.get();
-                    if (user.getPassword()!=password){
+                    if (!user.getPassword().equals(password)){
                         Toast.makeText(v.getContext(), "wrong password", Toast.LENGTH_SHORT).show();
                     }
                     else { // correct!!!
