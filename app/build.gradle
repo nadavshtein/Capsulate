@@ -43,7 +43,7 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.github.ceryle:RadioRealButton:v1.3'
     implementation 'com.github.st235:expandablebottombar:1.3.0'
-
+    implementation 'com.gauravk.bubblenavigation:bubblenavigation:1.0.7'
 
 }
 
