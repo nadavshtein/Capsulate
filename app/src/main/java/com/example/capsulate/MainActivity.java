@@ -17,24 +17,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        ExpandableBottomBar bottomBar= findViewById(R.id.expandable_bottom_bar);
-        setButtonBar(bottomBar);
     }
 
-    private void setButtonBar(ExpandableBottomBar bottomBar) {
-        bottomBar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-    }
 
 
 }
