@@ -10,6 +10,7 @@ import androidx.annotation.RequiresApi;
 import androidx.core.util.Consumer;
 
 import com.example.capsulate.DAO.UserDao;
+import com.example.capsulate.MainPageManager;
 import com.example.capsulate.MainPageWorker;
 import com.example.capsulate.users.User;
 import com.google.firebase.firestore.CollectionReference;
@@ -62,7 +63,7 @@ public class LoginClickListener implements View.OnClickListener {
                                 v.getContext().startActivity(intent);
                                 break;
                             case Manager:
-                                intent=new Intent(v.getContext(), MainPageManager2.class);
+                                intent=new Intent(v.getContext(), MainPageManager.class);
                                 intent.putExtra(User.userIdConst,userName);
                                 v.getContext().startActivity(intent);
                                 break;

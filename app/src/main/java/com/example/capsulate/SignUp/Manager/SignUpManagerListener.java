@@ -13,6 +13,7 @@ import com.example.capsulate.Corporation;
 import com.example.capsulate.DAO.CorporationDao;
 import com.example.capsulate.DAO.ManagerDao;
 import com.example.capsulate.DAO.UserDao;
+import com.example.capsulate.MainPageManager;
 import com.example.capsulate.SignUp.FieldsChecker;
 import com.example.capsulate.UserRole;
 import com.example.capsulate.users.Manager;
@@ -85,7 +86,7 @@ public class SignUpManagerListener implements View.OnClickListener {
                     Corporation corporation=new Corporation(corpId,corpName);
                     corporation.addEmployee(manager.getUserName());
                     corporationDao.save(corporation);
-                    Intent intent=new Intent(v.getContext(), MainPageManager2.class);
+                    Intent intent=new Intent(v.getContext(), MainPageManager.class);
                     intent.putExtra(User.userIdConst,manager.getUserName());
                     intent.putExtra(Corporation.corpIdConst,manager.getCorpId());
                     v.getContext().startActivity(intent);

@@ -4,6 +4,6 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorPrimary"
-    tools:context=".MainActivity">
+    tools:context=".MainPageManager">
 
 </androidx.constraintlayout.widget.ConstraintLayout>
